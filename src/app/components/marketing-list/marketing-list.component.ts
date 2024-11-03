@@ -6,9 +6,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
-
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { environment } from '../../../environments/environment';
+
 export interface MarketingEntry {
   date: string; // Date in 'YYYY-MM-DD' format
   memberName: string;
@@ -32,7 +31,6 @@ export interface MarketingEntry {
   styleUrl: './marketing-list.component.scss',
 })
 export class MarketingListComponent {
-  imageBaseUrl: string = environment.imageUrl;
   selectedMonth: Date = new Date();
   scheduleDates: Date[] = []; // All dates in the year
   filteredDates: string[] = []; // Filtered dates in string format

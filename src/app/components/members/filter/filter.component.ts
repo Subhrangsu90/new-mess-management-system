@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-  imageBaseUrl: string = environment.imageUrl;
   @Output() searchTextChanged = new EventEmitter<string>();
   @Output() addMemberClicked = new EventEmitter<void>(); // Emit an event when "Add Member" is clicked
   onSearch(event: Event) {

@@ -30,7 +30,6 @@ interface Column {
   styleUrl: './member-list.component.scss',
 })
 export class MemberListComponent {
-  imageBaseUrl: string = environment.imageUrl;
   @Input() members: Member[] = [];
   @Input() filterText = '';
   filteredMembers: Member[] = [];

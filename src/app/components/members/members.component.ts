@@ -21,7 +21,6 @@ import { environment } from '../../../environments/environment';
   styleUrl: './members.component.scss',
 })
 export class MembersComponent {
-  imageBaseUrl: string = environment.imageUrl;
   searchText = '';
   members: Member[] = [];
   showModal: boolean = false;

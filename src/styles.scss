@@ -7,7 +7,7 @@
   --color-dominant: #0d1117; /* Light Gray (60%) */
   --color-secondary: #010409; /* Medium Gray (30%) */
   --color-accent: #00adb5; /* Turquoise (10%) */
-  --color-accent-40: #00acb536;
+  --color-accent-40: #002d2f;
   --color-detail: #eeeeee; /* Dark Gray */
   --color-border-light: #656c76; /* Muted Color */
   --color-gray-medium: #9198a1; /* Medium Gray */
@@ -208,4 +208,17 @@ select {
 .p-icon {
   width: 0.8rem;
   height: 0.8rem;
+}
+
+.p-frozen-column {
+  font-weight: bolder;
+  background-color: #262626;
+  font-size: var(--font-size-normal) !important;
+}
+.p-datatable-frozen-tbody {
+  font-weight: bolder;
+}
+
+.p-datatable-scrollable th.p-frozen-column {
+  background: #00494d !important;
 }

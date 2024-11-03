@@ -14,6 +14,13 @@ export interface Member {
   meals: { [date: string]: { lunch: boolean; dinner: boolean } };
 }
 
+export interface Guest {
+  id: string;
+  name: string;
+
+  meals: { [date: string]: { lunch: boolean; dinner: boolean } };
+}
+
 @Component({
   selector: 'app-meal-schedule',
   standalone: true,
@@ -28,8 +35,6 @@ export interface Member {
   styleUrl: './meal-schedule.component.scss',
 })
 export class MealScheduleComponent {
-  imageBaseUrl: string = environment.imageUrl;
-
   members: Member[] = [
     {
       id: '1',
@@ -50,6 +55,18 @@ export class MealScheduleComponent {
       meals: {},
     },
   ];
+  guests: Guest[] = [
+    {
+      id: 'g1',
+      name: 'Guest 1',
+      meals: {},
+    },
+    {
+      id: 'g2',
+      name: 'Guest 2',
+      meals: {},
+    },
+  ];
 
   scheduleDates: Date[] = []; // All dates in the year
   filteredDates: string[] = []; // Filtered dates in string format
@@ -67,6 +84,17 @@ export class MealScheduleComponent {
         .toString()
         .padStart(2, '0')}`;
       member.meals[date] = { lunch: false, dinner: false };
+    }
+  }
+  initializeGuestMeals(guest: Guest, year: number, month: number): void {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    guest.meals = {};
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = `${year}-${(month + 1).toString().padStart(2, '0')}-${day
+        .toString()
+        .padStart(2, '0')}`;
+      guest.meals[date] = { lunch: false, dinner: false };
     }
   }
 
@@ -104,6 +132,14 @@ export class MealScheduleComponent {
         this.selectedMonth.getMonth()
       );
     });
+
+    this.guests.forEach((guest) =>
+      this.initializeGuestMeals(
+        guest,
+        this.selectedMonth.getFullYear(),
+        this.selectedMonth.getMonth()
+      )
+    );
   }
 
   // Filter dates based on the selected month, excluding the first day of the month
@@ -143,10 +179,46 @@ export class MealScheduleComponent {
       return count + (member.meals?.[date]?.[mealType] ? 1 : 0);
     }, 0);
   }
+
   isPastDate(date: string): boolean {
     const today = new Date();
     const currentDate = new Date(date);
     today.setHours(0, 0, 0, 0); // Reset time for accurate date comparison
     return currentDate < today;
+  }
+  // Calculate total meals for a member for the selected month
+  getTotalMealsForMember(member: Member): number {
+    return this.filteredDates.reduce((total, date) => {
+      const lunch = member.meals[date]?.lunch ? 1 : 0;
+      const dinner = member.meals[date]?.dinner ? 1 : 0;
+      return total + lunch + dinner;
+    }, 0);
+  }
+
+  getGrandTotalMeals(): number {
+    return this.members.reduce((total, member) => {
+      return total + this.getTotalMealsForMember(member);
+    }, 0);
+  }
+
+  getTotalGuestCount(date: string, mealType: 'lunch' | 'dinner'): number {
+    return this.guests.reduce((count, guest) => {
+      return count + (guest.meals?.[date]?.[mealType] ? 1 : 0);
+    }, 0);
+  }
+
+  // Function to calculate total meals for each guest across all dates in the month
+  getTotalMealsForGuest(guest: Guest): number {
+    return Object.values(guest.meals || {}).reduce(
+      (total, meals) => total + (meals.lunch ? 1 : 0) + (meals.dinner ? 1 : 0),
+      0
+    );
+  }
+
+  // Function to get the grand total meals for all guests in the month
+  getGrandTotalGuestMeals(): number {
+    return this.guests.reduce((total, guest) => {
+      return total + this.getTotalMealsForGuest(guest);
+    }, 0);
   }
 }
