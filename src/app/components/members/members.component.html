@@ -1,0 +1,28 @@
+<nav>
+  <img src="{{ imageBaseUrl }}/assets/icons/leftArrow.svg" alt="" />
+  <p class="home-link">Home</p>
+  <span>/</span>
+  <p>Members</p>
+</nav>
+<div class="member-container">
+  <div class="top-part">
+    <app-filter
+      (searchTextChanged)="onSearch($event)"
+      (addMemberClicked)="openModal()"
+    ></app-filter>
+  </div>
+  <div class="list-part">
+    <app-member-list
+      [members]="members"
+      [filterText]="searchText"
+      (memberEditClicked)="openModal($event)"
+      (memberDeleted)="handleMemberDeletion($event)"
+    ></app-member-list>
+  </div>
+</div>
+
+<app-add-edit-modal
+  *ngIf="showModal"
+  [member]="selectedMember"
+  (memberAdded)="onMemberAdded($event)"
+></app-add-edit-modal>

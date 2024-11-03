@@ -1,0 +1,114 @@
+<header class="AppHeader-globalBar">
+  <div class="AppHeader-globalBar-left">
+    <div class="nav-icon" (click)="toggleNav()">
+      <img src="assets/icons/menu-icon.svg" alt="" />
+    </div>
+    <a class="logo">
+      <img src="assets/icons/eLearning.svg" alt="Logo" />
+    </a>
+    <div class="page-name-or-user-name">
+      {{ pageTitleOrUserName }}
+    </div>
+  </div>
+  <div class="AppHeader-globalBar-right">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Type to Search..."
+        (focus)="openAdvancedSearch()"
+      />
+
+      <div
+        class="advanced-search-overlay"
+        *ngIf="isAdvancedSearchOpen"
+        (click)="closeAdvancedSearch()"
+      ></div>
+
+      <div
+        class="advanced-search-popup"
+        *ngIf="isAdvancedSearchOpen"
+        [ngClass]="{ visible: isAdvancedSearchOpen }"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="advanced-search-row">
+          <div class="autocomplete-search">
+            <div class="input-container">
+              <input
+                type="text"
+                id="search-field"
+                placeholder="Enter search term..."
+                #searchInput
+                [(ngModel)]="searchTerm"
+                (input)="onSearchInput(searchInput.value)"
+                (focus)="showAutocomplete = true"
+                (keydown)="performAdvancedSearch(searchTerm)"
+              />
+              <div class="clear-icon" *ngIf="searchTerm">
+                <img
+                  src="assets/icons/crossIcon.svg"
+                  alt="Clear"
+                  (click)="clearSearchInput(searchInput)"
+                />
+              </div>
+            </div>
+            <div class="search-list">
+              <div
+                class="search-term"
+                *ngIf="searchTerm"
+                (click)="performAdvancedSearch(searchTerm)"
+              >
+                <img src="assets/icons/searchIcon.svg" alt="" />
+                <p>{{ searchTerm }}</p>
+              </div>
+              <ul class="autocomplete-list" *ngIf="showAutocomplete">
+                <li
+                  *ngFor="let suggestion of filteredSuggestions"
+                  (click)="selectSuggestion(suggestion)"
+                >
+                  <span>{{ suggestion }}</span>
+                  <span class="jump-to">Jump to</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <button (click)="performAdvancedSearch()">
+                    <img src="assets/icons/searchIcon.svg" alt="" />
+                  </button> -->
+      </div>
+    </div>
+    <div class="user-profile-icon" (click)="userProfileMenu()">
+      <img
+        src="https://avatars.githubusercontent.com/u/76052002?v=4"
+        alt="User Profile"
+      />
+    </div>
+  </div>
+</header>
+
+<!-- Left Navbar -->
+<!-- Popup Navbar -->
+<div [ngClass]="{ 'navbar-popup': true, visible: isNavOpen }">
+  <app-navbar (closeNavbar)="closeNav()" />
+</div>
+
+<!-- Navbar Overlay -->
+<div *ngIf="isNavOpen" class="navbar-overlay" (click)="toggleNav()"></div>
+
+<!-- Right User Profile Dropdown -->
+<!-- Popup User Menu -->
+<div
+  [ngClass]="{
+    'user-profile-dropdown': true,
+    visible: isUserProfileDropdownOpen
+  }"
+>
+  <app-user-menu (closeUserMenuBar)="closeUserMenu()"></app-user-menu>
+</div>
+
+<!-- User Menu Overlay -->
+<div
+  *ngIf="isUserProfileDropdownOpen"
+  class="navbar-overlay"
+  (click)="userProfileMenu()"
+></div>

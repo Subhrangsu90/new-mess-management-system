@@ -1,0 +1,49 @@
+.filter-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border-light);
+
+  .left {
+    input {
+      max-height: 2rem;
+      padding: 0.4rem 0.8rem;
+      padding-left: 2rem;
+      border: solid max(1px, 0.0625rem) var(--color-border-light);
+      border-radius: 0.3rem;
+      font-size: var(--font-size-smaller);
+      transition: width 0.3s ease-in-out;
+      background-color: var(--color-dominant);
+
+      background-repeat: no-repeat;
+      background-position: 0.5rem center;
+      background-size: 1rem;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-accent);
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.3rem;
+      border: 1px solid var(--color-border-light);
+      font-size: var(--font-size-smaller);
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-accent);
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+.user-menu-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--color-border-light);
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+  background-color: var(--color-secondary);
+
+  .user-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    .user-img-id {
+      display: flex;
+      gap: 0.5rem;
+
+      .user-profile-img {
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        background-color: var(--color-secondary);
+
+        &:hover {
+          background-color: var(--color-dominant);
+        }
+
+        img {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+        }
+      }
+      .user-id-name {
+        display: flex;
+        flex-direction: column;
+
+        .userid {
+          font-size: var(--font-size-smaller);
+          font-weight: 600;
+          line-height: normal;
+          color: var(--color-detail);
+        }
+
+        .user-name {
+          font-size: var(--font-size-smaller);
+          color: var(--color-gray-medium);
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+    }
+
+    .cross-icon {
+      padding: 0.6rem;
+      cursor: pointer;
+
+      img {
+        width: 0.6rem;
+        height: 0.6rem;
+      }
+
+      &:hover {
+        background-color: var(--color-dominant);
+        border-radius: 0.3rem;
+      }
+
+      &:hover img {
+        filter: invert(44%) sepia(27%) saturate(4126%) hue-rotate(152deg)
+          brightness(98%) contrast(106%);
+      }
+    }
+  }
+
+  .user-menu-content {
+    padding: 0 1rem;
+    overflow: auto;
+
+    ul {
+      list-style: none;
+      padding: 0.5rem 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-size-smaller);
+      color: var(--color-detail);
+
+      li {
+        a {
+          color: var(--color-detail);
+          padding: 0.5rem;
+          text-decoration: none;
+          display: flex;
+          width: 100%;
+
+          &:hover {
+            border-radius: 0.3rem;
+            background-color: var(--color-dominant);
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.user-status {
+          padding: 0.5rem;
+          line-height: normal;
+
+          &:hover {
+            border-radius: 0.3rem;
+            background-color: var(--color-dominant);
+          }
+        }
+
+        &.horizontal-line {
+          height: 1px;
+          background-color: var(--color-gray-medium);
+          margin-top: calc(7px);
+          margin-bottom: 8px;
+          list-style: none;
+        }
+      }
+    }
+
+    .close-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}

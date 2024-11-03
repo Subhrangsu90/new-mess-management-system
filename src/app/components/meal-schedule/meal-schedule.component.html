@@ -1,0 +1,78 @@
+<nav>
+  <img src="{{ imageBaseUrl }}/assets/icons/leftArrow.svg" alt="" />
+  <p class="home-link">Home</p>
+  <span>/</span>
+  <p>Meal Schedule</p>
+</nav>
+
+<div class="schedule-card">
+  <div class="calendar">
+    <p-calendar
+      [(ngModel)]="selectedMonth"
+      (onSelect)="onMonthChange()"
+      view="month"
+      dateFormat="mm/yy"
+      placeholder="Select Month"
+    ></p-calendar>
+  </div>
+
+  <div class="table-container">
+    <!-- Table displaying the members and meal schedule -->
+
+    <p-table
+      p-datatable-gridlines
+      [value]="members"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [scrollable]="true"
+      scrollHeight="34rem"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th rowspan="2">Name</th>
+          <!-- Date Columns with Colspan for Each Date in Selected Month -->
+          <th *ngFor="let date of filteredDates" colspan="2">
+            {{ date | date : "dd/MM/yyyy" }}
+          </th>
+        </tr>
+        <tr>
+          <!-- Sub-Headers for Lunch and Dinner under Each Date -->
+          <ng-container *ngFor="let date of filteredDates">
+            <th>Lunch</th>
+            <th>Dinner</th>
+          </ng-container>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-member>
+        <tr>
+          <td>{{ member.name }}</td>
+          <ng-container *ngFor="let date of filteredDates">
+            <td>
+              <p-inputSwitch
+                [ngModel]="getMealStatus(member, date, 'lunch')"
+                (onChange)="toggleMeal(member, date, 'lunch')"
+                [disabled]="isPastDate(date)"
+              ></p-inputSwitch>
+            </td>
+            <td>
+              <p-inputSwitch
+                [ngModel]="getMealStatus(member, date, 'dinner')"
+                (onChange)="toggleMeal(member, date, 'dinner')"
+                [disabled]="isPastDate(date)"
+              ></p-inputSwitch>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <tr>
+          <td>Total</td>
+          <ng-container *ngFor="let date of filteredDates">
+            <td>{{ getTotalCount(date, "lunch") }}</td>
+            <td>{{ getTotalCount(date, "dinner") }}</td>
+          </ng-container>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

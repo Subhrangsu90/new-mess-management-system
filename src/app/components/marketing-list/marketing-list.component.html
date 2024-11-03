@@ -1,0 +1,85 @@
+<nav>
+  <img src="{{ imageBaseUrl }}/assets/icons/leftArrow.svg" alt="" />
+  <p class="home-link">Home</p>
+  <span>/</span>
+  <p>Marketing List</p>
+</nav>
+<div class="marketing-card">
+  <div class="calendar">
+    <p-calendar
+      [(ngModel)]="selectedMonth"
+      (onSelect)="onMonthChange()"
+      view="month"
+      dateFormat="mm/yy"
+      placeholder="Select Month"
+    ></p-calendar>
+  </div>
+
+  <div class="table-container">
+    <p-table
+      p-datatable-gridlines
+      [value]="marketingList"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [scrollable]="true"
+      scrollHeight="34rem"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Member Name</th>
+          <th>Spent Amount</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-member>
+        <tr>
+          <td>{{ member.date | date : "dd/MM" }}</td>
+          <td>
+            <ng-container *ngIf="!member.isEditing; else editTemplate">
+              {{ member.memberName }}
+            </ng-container>
+            <ng-template #editTemplate>
+              <p-autoComplete
+                [(ngModel)]="member.memberName"
+                [suggestions]="filteredMembers"
+                (completeMethod)="filterMembers($event)"
+                placeholder="Search"
+                [dropdown]="true"
+              />
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="!member.isEditing; else amountTemplate">
+              {{ member.spentAmount | currency : "INR" : "symbol" : "1.0-0" }}
+            </ng-container>
+            <ng-template #amountTemplate>
+              <p-inputNumber type="number" [(ngModel)]="member.spentAmount" />
+            </ng-template>
+          </td>
+          <td>
+            <img
+              *ngIf="!member.isEditing"
+              (click)="editMarketingEntry(member)"
+              [src]="imageBaseUrl + '/assets/icons/edit.svg'"
+              alt=""
+            />
+
+            <img
+              *ngIf="member.isEditing"
+              (click)="
+                saveMarketingEntry(
+                  member,
+                  member.memberName,
+                  member.spentAmount
+                )
+              "
+              [src]="imageBaseUrl + '/assets/icons/check.svg'"
+              alt=""
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

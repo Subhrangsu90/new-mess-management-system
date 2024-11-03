@@ -1,0 +1,32 @@
+<div class="user-menu-popup">
+  <div class="user-menu-header">
+    <div class="user-img-id">
+      <div class="user-profile-img">
+        <img
+          src="https://avatars.githubusercontent.com/u/76052002?v=4"
+          alt="User Name"
+        />
+      </div>
+      <div class="user-id-name">
+        <span class="userid">Subhrangsu90</span>
+        <span class="user-name">Subhrangsu Bera</span>
+      </div>
+    </div>
+    <div class="cross-icon" (click)="onClose()">
+      <img src="assets/icons/crossIcon.svg" alt="Close" />
+    </div>
+  </div>
+  <div class="user-menu-content">
+    <!-- Add your user-menu content here -->
+    <ul>
+      <li class="user-status">Focusing</li>
+      <li class="horizontal-line"></li>
+      <li><a routerLink="/landing-page" (click)="onClose()">Home</a></li>
+      <li><a routerLink="/about" (click)="onClose()">About</a></li>
+      <li><a routerLink="/services" (click)="onClose()">Services</a></li>
+      <li><a routerLink="/contact" (click)="onClose()">Contact</a></li>
+      <li class="horizontal-line"></li>
+      <li><a (click)="onLogout()">Log out</a></li>
+    </ul>
+  </div>
+</div>

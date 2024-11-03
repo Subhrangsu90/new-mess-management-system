@@ -1,0 +1,31 @@
+<div class="navbar-popup">
+  <div class="navbar-header">
+    <div class="logo">
+      <img src="assets/icons/eLearning.svg" alt="Logo" />
+    </div>
+    <div class="cross-icon" (click)="onClose()">
+      <img src="assets/icons/crossIcon.svg" alt="Close" />
+    </div>
+  </div>
+  <div class="navbar-content">
+    <!-- Add your navbar content here -->
+    <ul>
+      <li><a routerLink="/dashboard" (click)="onClose()">Home</a></li>
+      <li><a routerLink="/members" (click)="onClose()">Members</a></li>
+      <li>
+        <a routerLink="/meal-schedule" (click)="onClose()">Meal Schedule</a>
+      </li>
+      <li>
+        <a routerLink="/marketing-list" (click)="onClose()">Marketing List</a>
+      </li>
+      <li>
+        <a routerLink="/deposit-remain" (click)="onClose()">Deposit-Remain</a>
+      </li>
+      <li>
+        <a routerLink="/meals-calculation" (click)="onClose()"
+          >Meals Calculation</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

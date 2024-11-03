@@ -1,0 +1,47 @@
+<div class="card">
+  <p-table
+    [columns]="cols"
+    [value]="filteredMembers"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [scrollable]="true"
+    scrollHeight="32.5rem"
+    class="custome-table"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" (click)="openModal(rowData)">
+          <ng-container *ngIf="col.field === 'joinedDate'; else defaultContent">
+            {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+          </ng-container>
+          <ng-template #defaultContent>
+            {{ rowData[col.field] }}
+          </ng-template>
+        </td>
+        <td>
+          <img
+            [src]="imageBaseUrl + '/assets/icons/delete.svg'"
+            alt="Delete"
+            (click)="confirmDelete(rowData)"
+            pTooltip="Delete {{ rowData.name }}"
+            tooltipPosition="right"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr *ngIf="filteredMembers?.length == 0">
+        <td class="no-results" colspan="6">
+          <p>No members found matching your search criteria.</p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

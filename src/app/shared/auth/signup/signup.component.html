@@ -1,0 +1,64 @@
+<div class="signup-container">
+  <div class="main-container">
+    <h2>Create Your Account</h2>
+
+    <form
+      (ngSubmit)="onSubmit(signupForm)"
+      #signupForm="ngForm"
+      class="signup-form"
+    >
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="signupData.name"
+          required
+          class="form-control"
+          placeholder="Enter your name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="signupData.email"
+          required
+          class="form-control"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="signupData.password"
+          required
+          minlength="6"
+          class="form-control"
+          placeholder="Enter a password"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!signupForm.valid"
+      >
+        Sign Up
+      </button>
+    </form>
+
+    <p class="login-redirect">
+      Already have an account?
+      <a (click)="navigateToLogin()">Log in here</a>.
+    </p>
+  </div>
+</div>

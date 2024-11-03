@@ -1,0 +1,18 @@
+<div class="filter-part">
+  <div class="left">
+    <input
+      type="text"
+      placeholder="Type to Search..."
+      [ngStyle]="{
+        'background-image':
+          'url(' + imageBaseUrl + '/assets/icons/searchIcon.svg)'
+      }"
+      (input)="onSearch($event)"
+    />
+  </div>
+  <div class="right">
+    <div class="btn" (click)="openModal()">
+      <p>Add Member</p>
+    </div>
+  </div>
+</div>

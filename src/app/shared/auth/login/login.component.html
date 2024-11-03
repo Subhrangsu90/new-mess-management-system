@@ -1,0 +1,51 @@
+<div class="login-container">
+  <div class="main-container">
+    <h2>Log In to Your Account</h2>
+
+    <form
+      (ngSubmit)="onLogin(loginForm)"
+      #loginForm="ngForm"
+      class="login-form"
+    >
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="loginData.email"
+          required
+          class="form-control"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="loginData.password"
+          required
+          minlength="6"
+          class="form-control"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid"
+      >
+        Log In
+      </button>
+    </form>
+
+    <p class="signup-redirect">
+      Don't have an account?
+      <a (click)="navigateToSignup()">Sign up here</a>.
+    </p>
+  </div>
+</div>

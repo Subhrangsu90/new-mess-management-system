@@ -1,0 +1,17 @@
+.no-results {
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-gray-medium);
+  font-size: var(--font-size-medium);
+  background-color: var(
+    --color-border-light
+  ); // Optional: add background for emphasis
+}
+
+img {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(87%) saturate(7499%)
+      hue-rotate(1deg) brightness(112%) contrast(113%);
+  }
+}

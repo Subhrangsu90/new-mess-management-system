@@ -1,0 +1,85 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+<div class="modal-content">
+  <h2>{{ member ? "Edit Member" : "Add Member" }}</h2>
+  <div class="member-edit">
+    <!-- Full Name -->
+    <div class="p-field">
+      <label for="name">Full Name</label>
+      <input
+        id="name"
+        type="text"
+        pInputText
+        [(ngModel)]="newMember.name"
+        required
+      />
+    </div>
+    <div class="row">
+      <!-- Member Type Dropdown -->
+      <div class="p-field">
+        <label for="type">Member Type</label>
+        <p-dropdown
+          id="type"
+          [(ngModel)]="selectedMemberType"
+          [options]="memberTypes"
+          optionLabel="label"
+          placeholder="Member Type"
+          required
+          (ngModelChange)="onMemberTypeChange($event)"
+        ></p-dropdown>
+      </div>
+
+      <!-- Joined Date Picker -->
+      <div class="p-field">
+        <label for="joinedDate">Joined Date</label>
+        <p-calendar
+          id="joinedDate"
+          [(ngModel)]="newMember.joinedDate"
+          dateFormat="mm/dd/yy"
+          showIcon="true"
+          required
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="p-field">
+      <label for="joiningFees">Joining Fees</label>
+      <input
+        id="joiningFees"
+        type="number"
+        pInputText
+        [(ngModel)]="joiningFees"
+        [disabled]="newMember.type !== 'Admin'"
+      />
+    </div>
+    <div class="row">
+      <!-- Paid Amount (User Input) -->
+      <div class="p-field">
+        <label for="paidAmount">Amount Paid</label>
+        <input
+          id="paidAmount"
+          type="number"
+          pInputText
+          [(ngModel)]="paidAmount"
+          (ngModelChange)="onPaidAmountChange($event)"
+          required
+        />
+      </div>
+
+      <!-- Due Joining Fees (Calculated) -->
+      <div class="p-field">
+        <label for="dueJoiningFees">Due Joining Fees</label>
+        <input
+          id="dueJoiningFees"
+          type="number"
+          pInputText
+          [value]="newMember.dueJoiningFees"
+          [disabled]="true"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Button -->
+  <div type="button" class="btn" (click)="saveMember()">
+    <p>Save</p>
+  </div>
+</div>

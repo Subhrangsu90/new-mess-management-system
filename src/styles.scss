@@ -1,1 +1,206 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-dark-teal/theme.css";
+@import "primeng/resources/primeng.css";
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+:root {
+  // --color-dominant: #222831; /* Light Gray (60%) */
+  // --color-secondary: #393e46; /* Medium Gray (30%) */
+  --color-dominant: #0d1117; /* Light Gray (60%) */
+  --color-secondary: #010409; /* Medium Gray (30%) */
+  --color-accent: #00adb5; /* Turquoise (10%) */
+  --color-accent-40: #00acb536;
+  --color-detail: #eeeeee; /* Dark Gray */
+  --color-border-light: #656c76; /* Muted Color */
+  --color-gray-medium: #9198a1; /* Medium Gray */
+  --color-backdrop-overlay: #21283066;
+  --color-input-valid: #4caf50;
+  --color-input-invalid: #f44336;
+
+  --orange-red: oklch(63.32% 0.24 31.68);
+  --vivid-pink: oklch(69.02% 0.277 332.77);
+  --electric-violet: oklch(53.18% 0.28 296.97);
+  --red-to-pink-to-purple-vertical-gradient: linear-gradient(
+    180deg,
+    var(--orange-red) 0%,
+    var(--vivid-pink) 50%,
+    var(--electric-violet) 100%
+  );
+  --font-family: "Itim", cursive;
+}
+
+:root {
+  --font-size-x-large: 2rem;
+  --font-size-large: 1.5rem;
+  --font-size-medium: 1.25rem;
+  --font-size-normal: 1rem;
+  --font-size-smaller: 0.875rem;
+  --font-size-small: 0.75rem;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100dvh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: var(--color-dominant); /* 60% */
+  color: var(--color-detail);
+  font-family: var(--font-family) !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  box-sizing: border-box;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+// ================== Scroll Styles ================= //
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: var(--color-gray-medium);
+//   border-radius: 4px;
+// }
+
+// ::-webkit-scrollbar-thumb:hover {
+//   background-color: var(--color-accent);
+// }
+
+// ::-webkit-scrollbar-track {
+//   background: var(--color-secondary);
+// }
+
+/* Prime Table Style */
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--color-accent-40);
+  padding: 0.65rem 1rem;
+  font-size: var(--font-size-smaller);
+  border-width: 0 1px 1px 0 !important;
+  border-color: var(--color-border-light);
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.65rem 1rem;
+  font-size: var(--font-size-smaller);
+  color: var(--color-detail);
+  border-width: 0 1px 1px 0 !important;
+  border-color: var(--color-border-light);
+}
+
+.p-datatable .p-datatable-tfoot > tr > td {
+  padding: 0.65rem 1rem;
+  font-size: var(--font-size-smaller);
+  color: var(--color-detail);
+  border-width: 0 1px 1px 0 !important;
+  border-color: var(--color-border-light);
+}
+
+.p-component {
+  font-family: "Itim", cursive;
+}
+.p-datatable > .p-datatable-wrapper {
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.5rem;
+}
+
+.p-datatable-scrollable-table > .p-datatable-thead {
+  z-index: 0 !important;
+}
+.p-calendar {
+  width: 100%;
+}
+
+.p-dropdown {
+  width: 100%;
+}
+
+.p-inputtext {
+  font-size: var(--font-size-smaller);
+  color: var(--color-detail);
+  padding: 0.3rem 0.75rem;
+}
+
+.p-button.p-button-icon-only {
+  width: 2.5rem;
+  padding: 0.2rem 0;
+}
+.p-inputswitch {
+  transform: scale(0.7);
+}
+
+.p-inputswitch-slider {
+  border: 2px solid var(--color-border-light);
+}
+
+// .p-inputswitch .p-inputswitch-slider:before {
+//   background-color: var(--color-accent);
+// }
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: var(--color-accent);
+}
+.p-icon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
