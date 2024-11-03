@@ -156,6 +156,10 @@ select {
   border-color: var(--color-border-light);
 }
 
+.p-datatable .p-datatable-tbody > tr {
+  background-color: var(--color-secondary);
+}
+
 .p-component {
   font-family: "Itim", cursive;
 }
